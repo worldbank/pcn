@@ -69,7 +69,7 @@ Claims are keyed by `id`; the UI looks up by that id in `ClaimMark`.
 ## Optional Pieces
 
 - **Styles**: `import "@pcn-js/ui/styles.css"` for default claim and tooltip styles. You can omit it and style `.pcn-claim`, `.verified-mark`, `.verify-pending`, `.pcn-claim-detail` yourself.
-- **Streamdown / react-markdown**: Only if you render markdown that contains `<claim id="..." policy="rounded" decimals="2">…</claim>`. Use `streamdownClaimComponents` or `ClaimMarkStreamdown` from `@pcn-js/ui`.
+- **Streamdown / react-markdown**: Only if you render markdown that contains `<claim id="..." policy="rounded" decimals="2">…</claim>`. Use `streamdownClaimComponents` or `ClaimMarkStreamdown` from `@pcn-js/ui`. If claim tags do not render in production (0 claim nodes in DOM), see [Troubleshooting](troubleshooting.md#claim-tags-in-markdown-not-rendering-0-claim-nodes-in-dom).
 - **Data360 package**: Only if you use the Data360 get_data API; otherwise use core + ui and your own extractor.
 
 ## Local Development (workspace / file: links)

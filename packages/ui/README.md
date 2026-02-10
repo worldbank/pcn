@@ -97,6 +97,8 @@ import { streamdownClaimComponents } from "@pcn-js/ui";
 
 Or use the component directly: `components={{ claim: ClaimMarkStreamdown }}`. The model can emit markdown with `<claim id="..." policy="rounded" decimals="2">3439.1</claim>` inside table cells or paragraphs.
 
+**If claim tags don’t render in production** (e.g. 0 claim nodes in the DOM), the rehype pipeline may not be applied by the bundler. Explicitly pass `rehypePlugins` using Streamdown’s `defaultRehypePlugins`; see [Troubleshooting — Claim tags in markdown not rendering](../../docs/troubleshooting.md#claim-tags-in-markdown-not-rendering-0-claim-nodes-in-dom) in the docs.
+
 ### Static claims (no manager)
 
 If you have a fixed map of claims (e.g. from server props), pass `initialClaims` and omit `manager`:
