@@ -107,6 +107,10 @@ PCN is designed for **numerically sensitive settings** where accuracy matters:
 
 ## Documentation
 
+**Project site:** [avsolatorio.github.io/pcn](https://avsolatorio.github.io/pcn) — overview of value, use cases, how PCN works, and developer quick links.
+
+**Preview locally:** from the repository root, run `python -m http.server --directory docs` and open `http://127.0.0.1:8000/`.
+
 Comprehensive documentation is available:
 
 - [Documentation](docs/) — Detailed guides and reference materials
@@ -116,7 +120,7 @@ Comprehensive documentation is available:
 - [Contributing Guide](CONTRIBUTING.md) — How to contribute to PCN
 - [Code of Conduct](CODE_OF_CONDUCT.md) — Community guidelines
 
-> **Note**: For web-based documentation accessible to non-technical audiences, see the [documentation website](https://avsolatorio.github.io/pcn) (when available).
+GitHub Pages can publish from **`docs/`** on `main` (Settings → Pages → Branch) or via [.github/workflows/pages.yml](.github/workflows/pages.yml) (Settings → Pages → GitHub Actions). Use one source, not both.
 
 ## Contact
 

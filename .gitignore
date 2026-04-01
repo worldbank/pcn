@@ -3,6 +3,7 @@ node_modules
 dist
 .turbo
 .venv
+.venv-brief
 __pycache__
 .pytest_cache
 .DS_Store

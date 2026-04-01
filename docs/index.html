@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Proof-Carrying Numbers (PCN) — mechanically verify numbers in LLM output against source data. Model-agnostic, fail-closed, policy-flexible."
+    />
+    <title>Proof-Carrying Numbers (PCN)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="site-header__inner">
+        <nav class="site-nav" aria-label="Primary">
+          <a class="site-brand" href="#">PCN</a>
+          <ul class="site-nav__links">
+            <li><a href="#value">Why PCN</a></li>
+            <li><a href="#use-cases">Use cases</a></li>
+            <li><a href="#how">How it works</a></li>
+            <li><a href="#diagram">Overview</a></li>
+            <li><a href="#technical">Developers</a></li>
+            <li><a href="#start">Get started</a></li>
+          </ul>
+        </nav>
+
+        <div class="hero">
+          <span class="hero__eyebrow">Proof-Carrying Numbers</span>
+          <h1>Show numbers users can rely on—not ones the model merely sounds sure about</h1>
+          <p class="hero__lead">
+            PCN is a presentation-layer protocol for <strong>mechanical verification</strong>:
+            every numeric claim you display can be checked against structured source data, with
+            clear marks for verified vs. unverified values—so numeric hallucinations surface as
+            uncertainty, not as fake precision.
+          </p>
+          <p class="hero__sub">
+            Designed for teams where quantitative accuracy matters: development data, finance,
+            science, health, education, and compliance. Works with <strong>any LLM</strong>;
+            verification lives in your <strong>renderer</strong>, not inside the model.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#use-cases">Explore use cases</a>
+            <a
+              class="btn btn--ghost"
+              href="https://arxiv.org/abs/2509.06902"
+              rel="noopener noreferrer"
+              target="_blank"
+              >Read the paper</a
+            >
+            <a
+              class="btn btn--ghost"
+              href="https://github.com/avsolatorio/pcn"
+              >GitHub</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="section--user">
+        <section id="problem" class="section" aria-labelledby="problem-heading">
+          <h2 id="problem-heading" class="section__title">The problem PCN addresses</h2>
+          <div class="problem-callout">
+            <p>
+              Large language models can output numbers that do not match underlying data—<strong
+                >numeric hallucination</strong
+              >. Citations and RAG improve context but do not guarantee that the digits on screen
+              are faithful. PCN closes that gap by verifying at display time, with policies you
+              control (exact match, rounding, tolerances, aliases).
+            </p>
+          </div>
+        </section>
+
+        <section id="value" class="section" aria-labelledby="value-heading">
+          <h2 id="value-heading" class="section__title">What PCN enables</h2>
+          <p class="section__intro">
+            You keep your existing stack; PCN adds a verifiable presentation layer so stakeholders
+            see which figures are backed by proof—and which are not.
+          </p>
+          <ul class="outcome-grid">
+            <li class="outcome-card">
+              <h3>Trustworthy data products</h3>
+              <p>
+                Disseminate AI-assisted summaries of indicators, KPIs, or research figures with
+                verification marks tied to real observations—not guessed decimals.
+              </p>
+            </li>
+            <li class="outcome-card">
+              <h3>Transparent compliance posture</h3>
+              <p>
+                In regulated or audit-sensitive settings, default to fail-closed: only
+                claim-checked numbers show as verified; everything else stays visibly uncertain.
+              </p>
+            </li>
+            <li class="outcome-card">
+              <h3>Model-agnostic rollout</h3>
+              <p>
+                Swap or upgrade LLMs without rewriting trust logic—verification is enforced where
+                text becomes UI, independent of which model produced it.
+              </p>
+            </li>
+            <li class="outcome-card">
+              <h3>Extensible assurance</h3>
+              <p>
+                Start with strict policies; extend toward cryptographic commitments or
+                organization-specific rules as your assurance needs grow.
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <section id="use-cases" class="section" aria-labelledby="use-cases-heading">
+          <h2 id="use-cases-heading" class="section__title">Where PCN fits</h2>
+          <p class="section__intro">
+            PCN targets <strong>numerically sensitive</strong> experiences—anywhere a wrong number
+            erodes trust or creates risk.
+          </p>
+          <ul class="use-case-list">
+            <li>
+              <strong>Development &amp; official statistics</strong>
+              <span
+                >AI dissemination of World Bank–style indicators (e.g. Data360 workflows) where
+                users must see values aligned with source series and metadata.</span
+              >
+            </li>
+            <li>
+              <strong>Financial reporting &amp; analysis</strong>
+              <span
+                >Assistant-generated commentary that references balances, rates, or forecasts—verify
+                displayed figures against your ledger or data feed.</span
+              >
+            </li>
+            <li>
+              <strong>Science &amp; medical statistics</strong>
+              <span
+                >Teaching and research tools where quantitative claims should match datasets or
+                published tables under explicit rounding rules.</span
+              >
+            </li>
+            <li>
+              <strong>Legal &amp; regulatory</strong>
+              <span
+                >Narratives that cite numeric thresholds or filings—surface unverified numbers
+                instead of implying precision the model did not earn.</span
+              >
+            </li>
+            <li>
+              <strong>Education</strong>
+              <span
+                >Tutoring and assessment helpers that quote formulas and results—students and
+                reviewers see which numbers passed verification.</span
+              >
+            </li>
+          </ul>
+        </section>
+
+        <section id="how" class="section" aria-labelledby="how-heading">
+          <h2 id="how-heading" class="section__title">How it works (at a glance)</h2>
+          <p class="section__intro">
+            PCN separates <strong>generation</strong> from <strong>verification</strong>. The model
+            proposes text; your app binds numeric spans to structured claims and runs a verifier
+            under a declared policy before anything is shown as “verified.”
+          </p>
+          <ol class="steps">
+            <li>
+              <h3>Claim-bound tokens</h3>
+              <p>
+                Numbers are emitted as tokens linked to structured claims (for example identifiers
+                and observed values from your tools or APIs)—not as free-floating digits.
+              </p>
+            </li>
+            <li>
+              <h3>Policy-based checking</h3>
+              <p>
+                A verifier evaluates each claim under your policy: equality, rounding, aliases,
+                tolerances with qualifiers—so “about 3%” and “3.0%” can be handled explicitly.
+              </p>
+            </li>
+            <li>
+              <h3>Fail-closed by default</h3>
+              <p>
+                Only checks that succeed are marked verified; models cannot self-award trust.
+                Unverified stays visible as such—honest uncertainty beats silent error.
+              </p>
+            </li>
+          </ol>
+          <p class="principle">
+            Trust is earned only by proof—the absence of a verification mark communicates
+            uncertainty.
+          </p>
+        </section>
+
+        <section id="diagram" class="section" aria-labelledby="diagram-heading">
+          <h2 id="diagram-heading" class="section__title">Protocol overview</h2>
+          <p class="section__intro">
+            The diagram below summarizes how PCN ties displayed numbers to verifiable claims in
+            the renderer. (Also available in the repository README.)
+          </p>
+          <figure class="figure-block">
+            <img
+              src="imgs/pcn-diagram.png"
+              width="1200"
+              alt="Diagram of Proof-Carrying Numbers: user question, LLM output with numeric spans, claim store, verifier against source data, and verified presentation to the user."
+            />
+            <figcaption>
+              Mechanical verification in the presentation layer: structured claims and policies
+              determine which numbers are shown as verified.
+            </figcaption>
+          </figure>
+        </section>
+      </div>
+
+      <section
+        id="technical"
+        class="section section--technical-intro"
+        aria-labelledby="technical-heading"
+      >
+        <h2 id="technical-heading" class="section__title section__title--technical">
+          For developers
+        </h2>
+        <p class="section__technical-lede">
+          The sections below summarize the monorepo, packages, and quick start. Full guides live in
+          the <a href="https://github.com/avsolatorio/pcn/tree/main/docs">docs</a> folder on GitHub
+          (GitBook-oriented markdown).
+        </p>
+      </section>
+
+      <section id="ecosystem" class="section" aria-labelledby="ecosystem-heading">
+        <h2 id="ecosystem-heading" class="section__title">Project structure</h2>
+        <p class="section__intro">
+          PCN is a monorepo: TypeScript packages on npm (<code>@pcn-js/*</code>), Python packages on
+          PyPI (<code>pcn-*</code>), shared specs, and example apps.
+        </p>
+        <h3 class="section__title section__title--compact">JavaScript / TypeScript (npm)</h3>
+        <ul class="feature-grid">
+          <li class="feature-card">
+            <h3><code>@pcn-js/core</code></h3>
+            <p>Core protocol: claims, verification, HTML processing—usable without React.</p>
+          </li>
+          <li class="feature-card">
+            <h3><code>@pcn-js/ui</code></h3>
+            <p>React components: verified/pending claim marks, tooltips, markdown helpers.</p>
+          </li>
+          <li class="feature-card">
+            <h3><code>@pcn-js/data360</code></h3>
+            <p>Data360 preset: claims provider and extractor aligned with get_data-style results.</p>
+          </li>
+          <li class="feature-card">
+            <h3><code>@pcn-js/fixtures</code></h3>
+            <p>Shared test fixtures across packages.</p>
+          </li>
+        </ul>
+        <h3 class="section__title section__title--compact">Python (PyPI)</h3>
+        <ul class="feature-grid">
+          <li class="feature-card">
+            <h3><code>pcn-core</code></h3>
+            <p>Core PCN implementation for Python.</p>
+          </li>
+          <li class="feature-card">
+            <h3><code>pcn-fixtures</code></h3>
+            <p>Shared fixtures for Python tests.</p>
+          </li>
+        </ul>
+        <h3 class="section__title section__title--compact">Integration paths</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Path</th>
+                <th scope="col">When to use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Data360 preset</strong></td>
+                <td>
+                  Tool results shaped like Data360 <code>get_data</code> (e.g.
+                  <code>claim_id</code>, <code>OBS_VALUE</code>, <code>REF_AREA</code>,
+                  <code>TIME_PERIOD</code>) — fastest path with <code>Data360ClaimsProvider</code>.
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Custom extractors</strong></td>
+                <td>
+                  Any tool output shape: register extractors with <code>ClaimsManager</code>, map
+                  your keys, render with <code>ClaimMark</code>.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="section__intro">
+          Step-by-step instructions:
+          <a href="https://github.com/avsolatorio/pcn/blob/main/docs/integration.md"
+            >Integrating PCN in your app</a
+          >
+          ·
+          <a href="https://github.com/avsolatorio/pcn/blob/main/docs/reference/policies.md"
+            >Policy reference</a
+          >
+          ·
+          <a href="https://github.com/avsolatorio/pcn/blob/main/docs/publishing.md"
+            >Publishing to npm</a
+          >
+        </p>
+      </section>
+
+      <section id="features" class="section" aria-labelledby="features-heading">
+        <h2 id="features-heading" class="section__title">Protocol highlights</h2>
+        <ul class="feature-grid">
+          <li class="feature-card">
+            <h3>Model-agnostic</h3>
+            <p>Works with any LLM or generator; trust logic stays in your app.</p>
+          </li>
+          <li class="feature-card">
+            <h3>Lightweight</h3>
+            <p>Minimal overhead; integrate alongside existing UI and data flows.</p>
+          </li>
+          <li class="feature-card">
+            <h3>Formally grounded</h3>
+            <p>Soundness, completeness, fail-closed behavior, and monotonicity—see the paper.</p>
+          </li>
+          <li class="feature-card">
+            <h3>Policy-flexible</h3>
+            <p>Exact match, rounding, tolerance bands, aliases—declared per claim.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section id="start" class="section" aria-labelledby="start-heading">
+        <h2 id="start-heading" class="section__title">Quick start</h2>
+        <h3 class="section__title section__title--compact">JavaScript / TypeScript</h3>
+        <pre class="code-block" aria-label="pnpm quick start"><span class="comment"># From repo root</span>
+corepack enable
+pnpm install
+pnpm -r test
+pnpm -r build
+<span class="comment"># Example chat app</span>
+pnpm --filter pcn-example-chat-app dev
+<span class="comment"># http://localhost:5173</span></pre>
+
+        <h3 class="section__title section__title--compact">Python</h3>
+        <pre class="code-block" aria-label="Python quick start"><span class="comment"># Editable install + tests</span>
+python -m pip install -e "python/pcn-core[dev]"
+pytest -q python/pcn-core</pre>
+
+        <h3 class="section__title section__title--compact">Resources</h3>
+        <div class="links-grid">
+          <p>
+            <a href="https://arxiv.org/abs/2509.06902">arXiv: Proof-Carrying Numbers (PCN)</a>
+            — protocol and formal properties.
+          </p>
+          <p>
+            <a href="https://github.com/avsolatorio/pcn">Repository</a> ·
+            <a href="https://github.com/avsolatorio/pcn/issues">Issues</a> ·
+            <a href="https://github.com/avsolatorio/pcn/discussions">Discussions</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <p>
+          <strong>Proof-Carrying Numbers (PCN)</strong><br />
+          Maintainers:
+          <a href="mailto:avsolatorio@gmail.com">avsolatorio@gmail.com</a>
+        </p>
+        <p>
+          This project is licensed under the MIT License together with the World Bank IGO Rider.
+          See
+          <a href="https://github.com/avsolatorio/pcn/blob/main/LICENSE">LICENSE</a> on GitHub.
+        </p>
+        <p class="site-footer__meta">
+          Site: static files in <code>docs/</code> for GitHub Pages. Documentation markdown in
+          <code>docs/</code> is also used for GitBook sync; for rendered guides, use the links above
+          to GitHub.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
