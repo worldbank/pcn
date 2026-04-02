@@ -1,0 +1,8 @@
+{
+  "name": "pcn",
+  "domains": ["PCN"],
+  "github_repo": "",
+  "peers": {
+    "data-ai-chatbot": "${DATA_AI_CHATBOT_PATH}"
+  }
+}
